@@ -20,14 +20,17 @@ public class HeonLightDOA extends Heon {
 
 
     public void addPixel(HeonPixelDOA pixel){
+
         if (data.size() < PixelByLight) data.add(pixel);
     }
 
     public void setPixelByLight(long pixelByLight) {
+
         PixelByLight = pixelByLight;
     }
 
     public long getPixelByLight() {
+
         return PixelByLight;
     }
 

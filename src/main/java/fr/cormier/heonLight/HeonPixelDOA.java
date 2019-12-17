@@ -13,6 +13,9 @@ public class HeonPixelDOA extends Heon {
 
     public HeonPixelDOA() {
         super();
+        this.setR(0);
+        this.setG(0);
+        this.setB(0);
     }
 
 
@@ -51,6 +54,10 @@ public class HeonPixelDOA extends Heon {
         this.setR(r);
         this.setG(g);
         this.setB(b);
+    }
+
+    public String toStringLight(){
+        return ""+R+","+G+','+B;
     }
 
     @Override

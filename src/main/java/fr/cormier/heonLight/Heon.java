@@ -1,8 +1,6 @@
 package fr.cormier.heonLight;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,6 +33,7 @@ public abstract class Heon {
     public void setId(String id) {
         this.id = id;
     }
+
 
     public String GetJSON() {
         ObjectMapper Obj = new ObjectMapper();
