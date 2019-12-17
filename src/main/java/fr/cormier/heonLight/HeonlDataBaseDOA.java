@@ -5,6 +5,6 @@ import java.util.Set;
 
 public class HeonlDataBaseDOA {
 
-    private Set<HeonSystemLightDOA> heonSystems = new HashSet<>();
+    private Set<Heon> heonSystems = new HashSet<>();
 
 }

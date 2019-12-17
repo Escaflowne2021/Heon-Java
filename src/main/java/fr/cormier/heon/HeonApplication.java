@@ -28,7 +28,7 @@ public class HeonApplication {
         HeonLightDOA light2 = new HeonLightDOA();
         light2.addPixel(new HeonPixelDOA(100,300,400));
         HeonPixelDOA p = new HeonPixelDOA(40,50,70);
-        p.setId("Pixel");
+        p.setId("Pixel2");
         light2.addPixel(p);
         light2.addPixel(new HeonPixelDOA(40,50,70));
         light2.addPixel(new HeonPixelDOA(100,3000,0));
@@ -41,7 +41,7 @@ public class HeonApplication {
         JsonNode sysnode = objectMapper.readTree(json);
         HeonSystemLightDOA sys2 = objectMapper.treeToValue(sysnode,HeonSystemLightDOA.class);
         System.out.println("Is Sys2: " + sys2.getId());
-        sys2.SearchId("Pixel");
+        sys2.SearchId("Pixel2");
 
 
 

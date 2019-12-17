@@ -2,7 +2,9 @@ package fr.cormier.heonLight;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonDeserialize(as = HeonPixelDOA.class)
 public class HeonPixelDOA extends Heon {
 
     private int R;

@@ -1,13 +1,16 @@
 package fr.cormier.heonLight;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.HashSet;
 import java.util.Set;
 
+@JsonDeserialize(as = HeonSystemLightDOA.class)
 public class HeonSystemLightDOA extends Heon{
 
 
     private String Name; //Nom du la pièce ou systeme
-    private Set<HeonLightDOA> heonLightDOASet = new HashSet<>();
+    //private Set<Heon> heonLightDOASet = new HashSet<>();
 
     public HeonSystemLightDOA(){
        super();
@@ -18,12 +21,10 @@ public class HeonSystemLightDOA extends Heon{
         Name = name;
     }
 
-    public Set<HeonLightDOA> getHeonLightDOASet() {
-        return heonLightDOASet;
-    }
+
 
     public void addSystemLight(HeonLightDOA light){
-        heonLightDOASet.add(light);
+        data.add(light);
     }
 
     public String getName() {
@@ -38,28 +39,6 @@ public class HeonSystemLightDOA extends Heon{
         return id;
     }
 
-
-    @Override
-    public void SearchId(String id) {
-
-
-         Heon h = heonLightDOASet.stream()
-                 .filter(heonLightDOA -> heonLightDOA.getId().equals(id))
-                 .findFirst()
-                 .orElse(null);
-         if (h == null) {
-             heonLightDOASet.stream().forEach(heonLightDOA -> heonLightDOA.SearchId(id));
-         } else {
-             System.out.println("TROUVEEEEE:"+h.getId());
-         }
-                //.forEach(heonLightDOA -> System.out.println("trouve :"+heonLightDOA.getId())).;
-
-
-
-       heonLightDOASet.forEach((HeonLightDOA light)-> {
-           System.out.println(light.id);
-       });
-    }
 
 
 }
