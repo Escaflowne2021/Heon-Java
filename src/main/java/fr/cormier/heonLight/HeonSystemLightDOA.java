@@ -66,12 +66,36 @@ public class HeonSystemLightDOA extends Heon{
         return id;
     }
 
+    //permet de preparer le Json à l'aduino le plus simplement possible. Le but est d'avoir que les information, des LED.
     public void RefreshLight(){
 
-        heonSocket.SendData(this.GetJSON()+ System.lineSeparator());
+        //heonSocket.SendData(this.GetJSON()+ System.lineSeparator());
+
+        StringBuilder arduinoData = new StringBuilder();
+        int count = 0;
+        for (Heon h : data){
+           count++;
+           HeonLightDOA light = (HeonLightDOA)h;
+           long nombrePixelManquant = light.getPixelByLight() - light.data.size();
+           //System.out.println("Nombre de pixel maanquant" + nombrePixelManquant);
+           for (Heon hp : light.data){
+                HeonPixelDOA pixel = (HeonPixelDOA) hp;
+                arduinoData.append(pixel.toStringLight()).append("#");
+                //System.out.println(pixel.toStringLight());
+                //Bourrage d'information de pixel à 0
+
+            }
+            for (int i = 0 ; i < nombrePixelManquant ; i++){
+                //System.out.println("Bourrage");
+                arduinoData.append("" + 0 + "," + 0 + ',' + 0+"#");
+            }
+
+        }
+
+    System.out.println(arduinoData.toString());
+        heonSocket.SendData(arduinoData.toString()+System.lineSeparator());
 
 
-        
     }
 
 

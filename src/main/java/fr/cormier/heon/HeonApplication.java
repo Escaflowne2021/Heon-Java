@@ -33,7 +33,7 @@ public class HeonApplication {
         light.addPixel(new HeonPixelDOA(40,50,70));
         light.addPixel(new HeonPixelDOA(100,3000,0));
         light.addPixel(new HeonPixelDOA(40,50,70));
-        light.addPixel(new HeonPixelDOA(100,3000,0));
+
         sys.addSystemLight(light);
 
 
@@ -42,13 +42,17 @@ public class HeonApplication {
         HeonPixelDOA p = new HeonPixelDOA(40,50,70);
         p.setId("Pixel2");
         light2.addPixel(p);
-       light2.addPixel(new HeonPixelDOA(40,50,70));
+        light2.addPixel(new HeonPixelDOA(40,50,70));
         light2.addPixel(new HeonPixelDOA(100,3000,0));
         light2.setId("essai");
         sys.addSystemLight(light2);
 
         String json = sys.GetJSON();
         sys.RefreshLight();
+        sys.RefreshLight();
+        sys.RefreshLight();
+        sys.RefreshLight();
+
 
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        JsonNode sysnode = objectMapper.readTree(json);
