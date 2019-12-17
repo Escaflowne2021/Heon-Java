@@ -2,6 +2,8 @@ package fr.cormier.heon;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import fr.cormier.heonLight.Heon;
 import fr.cormier.heonLight.HeonLightDOA;
 import fr.cormier.heonLight.HeonPixelDOA;
 import fr.cormier.heonLight.HeonSystemLightDOA;
@@ -30,7 +32,7 @@ public class HeonApplication {
         HeonPixelDOA p = new HeonPixelDOA(40,50,70);
         p.setId("Pixel2");
         light2.addPixel(p);
-        light2.addPixel(new HeonPixelDOA(40,50,70));
+       light2.addPixel(new HeonPixelDOA(40,50,70));
         light2.addPixel(new HeonPixelDOA(100,3000,0));
         light2.setId("essai");
         sys.addSystemLight(light2);
@@ -41,7 +43,9 @@ public class HeonApplication {
         JsonNode sysnode = objectMapper.readTree(json);
         HeonSystemLightDOA sys2 = objectMapper.treeToValue(sysnode,HeonSystemLightDOA.class);
         System.out.println("Is Sys2: " + sys2.getId());
-        sys2.SearchId("Pixel2");
+        System.out.println(sys2.SearchId("Pixel2").toString());
+
+
 
 
 

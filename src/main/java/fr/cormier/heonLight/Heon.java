@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashSet;
@@ -21,7 +20,7 @@ import java.util.Set;
         @JsonSubTypes.Type(value = HeonSystemLightDOA.class, name = "Syst"),
         @JsonSubTypes.Type(value = HeonPixelDOA.class, name = "Pixel")
 })
-abstract class Heon {
+public abstract class Heon {
     protected String id;
     protected Set<Heon> data = new HashSet<>();
 
@@ -60,17 +59,34 @@ abstract class Heon {
     }
 
 
-     public void SearchId(String id) {
+     public Heon SearchId(String id) {
+
          Heon h = data.stream()
-                 .filter(heonLightDOA -> heonLightDOA.getId().equals(id))
+                 .filter(Heon -> Heon.getId().equals(id))
                  .findFirst()
                  .orElse(null);
          if (h == null) {
-             data.stream().forEach(heonLightDOA -> heonLightDOA.SearchId(id));
+             for (Heon heon : data){
+                Heon temp = heon.SearchId(id);
+                if (temp != null) {
+                    return temp;
+                }
+             }
+
+             //data.stream().forEach(Heon -> Heon.SearchId(id));
          } else {
              System.out.println("TROUVEEEEE:"+h.getId());
          }
-     };
+
+         return h;
+     }
+
+    @Override
+    public String toString() {
+        return "Heon{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }
 
 

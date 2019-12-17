@@ -31,5 +31,12 @@ public class HeonLightDOA extends Heon {
         return PixelByLight;
     }
 
-
+    @Override
+    public String toString() {
+        return "HeonLightDOA{" +
+                "PixelByLight=" + PixelByLight +
+                ", id='" + id + '\'' +
+                ", Light =" + data.size() +
+                '}';
+    }
 }

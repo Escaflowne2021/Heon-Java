@@ -15,10 +15,6 @@ public class HeonPixelDOA extends Heon {
         super();
     }
 
-    @Override
-    public void SearchId(String id) {
-
-    }
 
     public HeonPixelDOA(int r, int g, int b) {
         this.setR(r);
@@ -55,6 +51,16 @@ public class HeonPixelDOA extends Heon {
         this.setR(r);
         this.setG(g);
         this.setB(b);
+    }
+
+    @Override
+    public String toString() {
+        return "HeonPixelDOA{" +
+                "R=" + R +
+                ", G=" + G +
+                ", B=" + B +
+                ", id='" + id + '\'' +
+                '}';
     }
 }
 
