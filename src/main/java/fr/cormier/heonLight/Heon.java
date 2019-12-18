@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ import java.util.Set;
 })
 public abstract class Heon {
     protected String id;
-    protected Set<Heon> data = new HashSet<>();
+    protected Set<Heon> data = new LinkedHashSet<>();
 
     public Heon() {
         id = this.generateId();

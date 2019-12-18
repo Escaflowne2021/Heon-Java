@@ -25,18 +25,17 @@ public class HeonApplication {
         //ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanConfiguration.class);
         HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","192.168.0.44",2000);
         HeonLightDOA light = new HeonLightDOA();
-        light.addPixel(new HeonPixelDOA(100,300,400));
-        light.addPixel(new HeonPixelDOA(40,50,70));
-        light.addPixel(new HeonPixelDOA(100,3000,0));
-        light.addPixel(new HeonPixelDOA(40,50,70));
-        light.addPixel(new HeonPixelDOA(100,3000,0));
-        light.addPixel(new HeonPixelDOA(40,50,70));
-        light.addPixel(new HeonPixelDOA(100,3000,0));
-        light.addPixel(new HeonPixelDOA(40,50,70));
 
+        light.addPixel(new HeonPixelDOA(0,0,255));
+        light.addPixel(new HeonPixelDOA(0,0,255));
+        light.addPixel(new HeonPixelDOA(0,0,255));
+        light.addPixel(new HeonPixelDOA(255,255,255));
+        light.addPixel(new HeonPixelDOA(255,255,255));
+        light.addPixel(new HeonPixelDOA(255,255,255));
+        light.addPixel(new HeonPixelDOA(0,255,0));
+        light.addPixel(new HeonPixelDOA(0,255,0));
+        light.addPixel(new HeonPixelDOA(0,255,0));
         sys.addSystemLight(light);
-
-
         HeonLightDOA light2 = new HeonLightDOA();
         light2.addPixel(new HeonPixelDOA(100,300,400));
         HeonPixelDOA p = new HeonPixelDOA(40,50,70);
@@ -49,9 +48,7 @@ public class HeonApplication {
 
         String json = sys.GetJSON();
         sys.RefreshLight();
-        sys.RefreshLight();
-        sys.RefreshLight();
-        sys.RefreshLight();
+
 
 
 //        ObjectMapper objectMapper = new ObjectMapper();
