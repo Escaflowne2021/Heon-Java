@@ -46,7 +46,7 @@ public class HeonSystemLightDOA extends Heon{
         Name = name;
         this.IP = IP;
         this.port = port;
-        heonSocket = new HeonSocket(IP,port);
+        //heonSocket = new HeonSocket(IP,port);
 
     }
 
