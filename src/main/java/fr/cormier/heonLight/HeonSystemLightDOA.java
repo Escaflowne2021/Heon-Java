@@ -68,7 +68,7 @@ public class HeonSystemLightDOA extends Heon{
 
     //permet de preparer le Json à l'aduino le plus simplement possible. Le but est d'avoir que les information, des LED.
     public void RefreshLight(){
-
+        heonSocket = new HeonSocket(IP,port);
         //heonSocket.SendData(this.GetJSON()+ System.lineSeparator());
 
         StringBuilder arduinoData = new StringBuilder();
@@ -94,6 +94,7 @@ public class HeonSystemLightDOA extends Heon{
 
     System.out.println(arduinoData.toString());
         heonSocket.SendData(arduinoData.toString()+System.lineSeparator());
+
 
 
     }

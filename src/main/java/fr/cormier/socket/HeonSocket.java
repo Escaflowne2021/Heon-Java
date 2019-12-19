@@ -32,6 +32,7 @@ public class HeonSocket {
             BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
             bos.write(text.getBytes());
             bos.flush();
+            socket.close();
             System.out.println("Message sent to the server : " + text);
         } catch (IOException e){
             e.printStackTrace();

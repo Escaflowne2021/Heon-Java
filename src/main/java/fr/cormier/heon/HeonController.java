@@ -37,7 +37,10 @@ public class HeonController {
             JsonNode sysnode = objectMapper.readTree(o);
             HeonSystemLightDOA sys2 = objectMapper.treeToValue(sysnode, HeonSystemLightDOA.class);
             System.out.println("Is Sys From React: " + sys2.getId());
-            System.out.println(sys2.SearchId("Pixel2").toString());
+
+            sys2.RefreshLight();
+            HeonSystemLightDOA sys3 = (HeonSystemLightDOA)heonPixelDataBase.SearchId(sys2.getId());
+            sys3 = sys2;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         } catch (IOException e) {

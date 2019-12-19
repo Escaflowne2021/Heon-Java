@@ -30,48 +30,26 @@ public class HeonApplication {
 
 
         HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","192.168.0.44",2000);
-        HeonLightDOA light = new HeonLightDOA();
-        light.addPixel(new HeonPixelDOA(0,0,255));
-        light.addPixel(new HeonPixelDOA(0,0,255));
-        light.addPixel(new HeonPixelDOA(0,0,255));
-        light.addPixel(new HeonPixelDOA(255,255,255));
+        HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
+        int i =0;
+        while (i < 10) {
+            light.addPixel(new HeonPixelDOA(0, 0, 255));
+            i++;
+        }
 
+        HeonLightDOA light2 = applicationContext.getBean(HeonLightDOA.class);
+    i=0;
+
+        while (i < 10) {
+            light2.addPixel(new HeonPixelDOA(255, 0, 0));
+            i++;
+        }
         sys.addSystemLight(light);
-        HeonLightDOA light2 = new HeonLightDOA();
-        light2.addPixel(new HeonPixelDOA(100,300,400));
-        HeonPixelDOA p = new HeonPixelDOA(40,50,70);
-        p.setId("Pixel2");
-        light2.addPixel(p);
-        light2.addPixel(new HeonPixelDOA(40,50,70));
-        light2.addPixel(new HeonPixelDOA(100,3000,0));
-        light2.setId("essai");
         sys.addSystemLight(light2);
+        sys.RefreshLight();
 
-
-        HeonSystemLightDOA sys2 = new HeonSystemLightDOA("chambre","192.168.0.45",3000);
-        HeonLightDOA light3 = new HeonLightDOA();
-        light3.addPixel(new HeonPixelDOA(0,0,255));
-        light3.addPixel(new HeonPixelDOA(0,0,255));
-        light3.addPixel(new HeonPixelDOA(0,0,255));
-        light3.addPixel(new HeonPixelDOA(255,255,255));
-
-        HeonLightDOA light5 = new HeonLightDOA();
-        light5.addPixel(new HeonPixelDOA(0,0,255));
-        sys2.addSystemLight(light5);
-        sys2.addSystemLight(light3);
-
-        HeonLightDOA light4 = new HeonLightDOA();
-        light4.addPixel(new HeonPixelDOA(100,300,400));
-        HeonPixelDOA p2 = new HeonPixelDOA(40,50,70);
-        p2.setId("Pixel2");
-        light4.addPixel(p);
-        light4.addPixel(new HeonPixelDOA(40,50,70));
-        light4.addPixel(new HeonPixelDOA(100,3000,0));
-        light4.setId("essai");
-
-        sys2.addSystemLight(light4);
         base.addSystemLight(sys);
-        base.addSystemLight(sys2);
+        //base.addSystemLight(sys2);
 
 
 

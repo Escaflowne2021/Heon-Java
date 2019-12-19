@@ -1,6 +1,8 @@
 package fr.cormier.heonLight;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,8 +10,8 @@ import java.util.Set;
 @JsonDeserialize(as = HeonLightDOA.class)
 public class HeonLightDOA extends Heon {
 
-
-    private long PixelByLight = 9;
+    @Value("${nb_pixel_by_light}")
+    private long PixelByLight = 5;
     //private Set<Heon> heonPixelDOASet = new HashSet<>();
 
 
