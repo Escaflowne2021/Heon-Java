@@ -11,7 +11,7 @@ import java.util.Set;
 public class HeonLightDOA extends Heon {
 
     @Value("${nb_pixel_by_light}")
-    private long PixelByLight = 5;
+    private long PixelByLight;
     //private Set<Heon> heonPixelDOASet = new HashSet<>();
 
 

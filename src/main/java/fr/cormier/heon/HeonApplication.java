@@ -31,6 +31,7 @@ public class HeonApplication {
 
         HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","192.168.0.44",2000);
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
+
         int i =0;
         while (i < 10) {
             light.addPixel(new HeonPixelDOA(0, 0, 255));

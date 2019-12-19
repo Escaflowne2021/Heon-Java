@@ -29,18 +29,20 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.POST, path = "/heon", consumes = "text/plain")
     @ResponseBody
     public String heonPost(@RequestBody String  o )  {
-        System.out.println("Get a POST heon" + o);
+        //System.out.println("Get a POST heon" + o);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             JsonNode sysnode = objectMapper.readTree(o);
-            HeonSystemLightDOA sys2 = objectMapper.treeToValue(sysnode, HeonSystemLightDOA.class);
-            System.out.println("Is Sys From React: " + sys2.getId());
+            HeonSystemLightDOA temp = objectMapper.treeToValue(sysnode, HeonSystemLightDOA.class);
+            System.out.println("Is Sys From React: " + temp.getId());
 
-            sys2.RefreshLight();
-            HeonSystemLightDOA sys3 = (HeonSystemLightDOA)heonPixelDataBase.SearchId(sys2.getId());
-            sys3 = sys2;
+            //sys2.RefreshLight();
+            HeonSystemLightDOA sys3 = (HeonSystemLightDOA)heonPixelDataBase.SearchId(temp.getId());
+            sys3.setData(temp.getData());
+            sys3.RefreshLight();
+            //sys3 = sys2;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         } catch (IOException e) {

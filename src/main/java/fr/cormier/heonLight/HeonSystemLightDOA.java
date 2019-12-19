@@ -35,18 +35,22 @@ public class HeonSystemLightDOA extends Heon{
         this.port = port;
     }
 
+
+    @Autowired
     private HeonSocket heonSocket;
 
     public HeonSystemLightDOA(){
        super();
     }
 
+
     public HeonSystemLightDOA(String name,String IP, int port) {
         super();
         Name = name;
         this.IP = IP;
         this.port = port;
-        //heonSocket = new HeonSocket(IP,port);
+
+        this.heonSocket = new HeonSocket(IP,port);
 
     }
 
@@ -65,10 +69,18 @@ public class HeonSystemLightDOA extends Heon{
     public String getId() {
         return id;
     }
+    //protected Set<Heon> data = new LinkedHashSet<>();
+    public Set<Heon> getData(){
+        return this.data;
+    }
+
+    public void setData(Set<Heon> data){
+        this.data = data;
+    }
 
     //permet de preparer le Json à l'aduino le plus simplement possible. Le but est d'avoir que les information, des LED.
     public void RefreshLight(){
-        heonSocket = new HeonSocket(IP,port);
+        //heonSocket = new HeonSocket(IP,port);
         //heonSocket.SendData(this.GetJSON()+ System.lineSeparator());
 
         StringBuilder arduinoData = new StringBuilder();
