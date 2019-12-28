@@ -29,7 +29,7 @@ public class HeonApplication {
         HeonlDataBaseDOA base = applicationContext.getBean(HeonlDataBaseDOA.class);
 
 
-        HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","192.168.0.44",2000);
+        HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","172.20.10.11",2000);
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
 
         int i =0;

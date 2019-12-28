@@ -18,6 +18,12 @@ public class HeonlDataBaseDOA extends Heon{
         data.add(light);
     }
 
+    public void delSystemLight(HeonSystemLightDOA light) {
+        light.stopService();
+        data.remove(light);
+
+    }
+
     @PostConstruct
     public void PostContruct(){
         System.out.println("Post Contruction");

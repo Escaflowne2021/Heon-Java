@@ -26,10 +26,17 @@ public class HeonController {
         return heonPixelDataBase.GetJSON();
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/AddSysheon")
+    public String AddSysheon(){
+        System.out.println("Add a Sys heon");
+        heonPixelDataBase.addSystemLight(new HeonSystemLightDOA("A définir","172.20.10.11",2000));
+        return heonPixelDataBase.GetJSON();
+    }
+
     @RequestMapping(method = RequestMethod.POST, path = "/heon", consumes = "text/plain")
     @ResponseBody
     public String heonPost(@RequestBody String  o )  {
-        //System.out.println("Get a POST heon" + o);
+        System.out.println("Get a POST heon" + o);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -51,6 +58,16 @@ public class HeonController {
 
 
         return "";
+    }
+
+
+    @RequestMapping(method = RequestMethod.POST, path = "/Supheon", consumes = "text/plain")
+    @ResponseBody
+    public String heonSup(@RequestParam String id )  {
+        System.out.println("SUP heon : " + id);
+        HeonSystemLightDOA sys3 = (HeonSystemLightDOA)heonPixelDataBase.SearchId(id);
+        heonPixelDataBase.delSystemLight(sys3);
+        return heonPixelDataBase.GetJSON();
     }
 
 }

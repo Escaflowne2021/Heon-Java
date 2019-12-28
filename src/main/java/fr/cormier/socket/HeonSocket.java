@@ -1,40 +1,68 @@
 package fr.cormier.socket;
 
+import javax.annotation.security.RunAs;
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 public class HeonSocket {
 
     private Socket socket;
     private HashMap<String, Socket> socketHashMap = new HashMap<String, Socket>();
+    private Runnable maTache;
+    private ScheduledExecutorService executor;
 
     public HeonSocket() {
         System.out.println("Contructeur HeonSocket ");
     }
 
 
-    public HeonSocket(String IP, int port) {
-//
+    public HeonSocket(String IP, int port, String ID) {
 
-        Thread t = new Thread(new Runnable() {
-            @Override
+        executor = Executors.newScheduledThreadPool(2);
+
+         maTache = new Runnable() {
             public void run() {
-
-                while (socket == null || !socket.isConnected()) {
-                    System.out.println("Connexion en Cours ......");
+                if (socket == null || !socket.isConnected()){
+                    System.out.println("Connexion en Cours ......" + IP + " id:"+ID);
                     try {
-                        socket = new Socket(IP, port);
-                        socket.setSoTimeout(5*1000); //timeOut de 5s
+                        socket = new Socket();
+                        socket.connect(new InetSocketAddress(IP, port),2000);
+
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        System.out.println("Erreur connexion ......" + IP+ " id:"+ID);
                     }
                 }
+            }
+        };
 
+        final ScheduledFuture<?> maTacheFuture = executor.scheduleAtFixedRate(
+                maTache, 5, 5, SECONDS);
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                executor.shutdown();
             }
         });
-        t.start();
+    }
+
+
+
+
+    public void CloseSocket(){
+        try {
+            if (socket != null) { socket.close(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        executor.shutdown();
     }
 
 
