@@ -36,7 +36,7 @@ public abstract class Heon implements Cloneable {
         this.id = id;
     }
 
-    //public abstract void ReplaceME(Heon heon);
+    public abstract void ReplaceME(Heon heon);
 
     public String GetJSON() {
         ObjectMapper Obj = new ObjectMapper();

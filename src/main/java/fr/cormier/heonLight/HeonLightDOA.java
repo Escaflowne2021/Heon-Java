@@ -19,6 +19,10 @@ public class HeonLightDOA extends Heon {
         super();
     }
 
+    @Override
+    public void ReplaceME(Heon heon) {
+        //a completer
+    }
 
 
     public void addPixel(HeonPixelDOA pixel){

@@ -49,7 +49,6 @@ public class HeonSystemLightDOA extends Heon {
         Name = name;
         this.IP = IP;
         this.port = port;
-
         this.heonSocket = new HeonSocket(IP,port,this.id);
 
     }
@@ -73,6 +72,22 @@ public class HeonSystemLightDOA extends Heon {
     public String getId() {
         return id;
     }
+
+    @Override
+    public void ReplaceME(Heon heon) {
+        HeonSystemLightDOA H = (HeonSystemLightDOA)heon;
+        this.IP = H.IP;
+        System.out.println(H.IP);
+        this.Name = H.Name;
+        this.port = H.port;
+        this.data = H.data;
+
+        this.stopService();
+        this.heonSocket = new HeonSocket(IP,port,this.id);
+
+
+    }
+
     //protected Set<Heon> data = new LinkedHashSet<>();
     public Set<Heon> getData(){
         return this.data;

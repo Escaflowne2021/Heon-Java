@@ -18,6 +18,11 @@ public class HeonPixelDOA extends Heon {
         this.setB(0);
     }
 
+    @Override
+    public void ReplaceME(Heon heon) {
+        // a complter
+    }
+
 
     public HeonPixelDOA(int r, int g, int b) {
         this.setR(r);

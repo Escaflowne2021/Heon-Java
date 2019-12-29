@@ -14,6 +14,11 @@ public class HeonlDataBaseDOA extends Heon{
         System.out.println("Contructeur Database");
     }
 
+    @Override
+    public void ReplaceME(Heon heon) {
+        //Rien a faire
+    }
+
     public void addSystemLight(HeonSystemLightDOA light){
         data.add(light);
     }
@@ -26,11 +31,8 @@ public class HeonlDataBaseDOA extends Heon{
 
     public void ReplaceHeonNode(Heon heon) {
         Heon temp = this.SearchId(heon.getId());
-        if (temp instanceof HeonSystemLightDOA) {
-
-            ((HeonSystemLightDOA) temp).setName(((HeonSystemLightDOA)heon).getName());
-
-        }
+        temp.ReplaceME(heon);
+//
     }
 
 
