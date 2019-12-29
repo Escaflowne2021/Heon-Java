@@ -12,7 +12,7 @@ import java.util.Set;
 
 @JsonDeserialize(as = HeonSystemLightDOA.class)
 @Component
-public class HeonSystemLightDOA extends Heon{
+public class HeonSystemLightDOA extends Heon {
 
 
     private String Name; //Nom du la pièce ou systeme
@@ -56,6 +56,7 @@ public class HeonSystemLightDOA extends Heon{
     public void stopService(){
         this.heonSocket.CloseSocket();
     }
+
 
     public void addSystemLight(HeonLightDOA light){
         data.add(light);

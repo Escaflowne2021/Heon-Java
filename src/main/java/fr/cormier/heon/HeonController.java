@@ -3,6 +3,8 @@ package fr.cormier.heon;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.cormier.heonLight.Heon;
+import fr.cormier.heonLight.HeonPixelDOA;
 import fr.cormier.heonLight.HeonSystemLightDOA;
 import fr.cormier.heonLight.HeonlDataBaseDOA;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,26 @@ public class HeonController {
         heonPixelDataBase.addSystemLight(new HeonSystemLightDOA("A définir","172.20.10.11",2000));
         return heonPixelDataBase.GetJSON();
     }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/Modifheon")
+    @ResponseBody
+    public void Modifheon(@RequestBody String  o){
+        System.out.println("Modification de heon");
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode sysnode = objectMapper.readTree(o);
+            Heon H = objectMapper.treeToValue(sysnode, Heon.class);
+
+            heonPixelDataBase.ReplaceHeonNode(H);
+            System.out.println("Modification de Heon ID: " + H.getClass());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     @RequestMapping(method = RequestMethod.POST, path = "/heon", consumes = "text/plain")
     @ResponseBody

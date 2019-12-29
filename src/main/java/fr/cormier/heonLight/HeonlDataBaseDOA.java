@@ -24,6 +24,17 @@ public class HeonlDataBaseDOA extends Heon{
 
     }
 
+    public void ReplaceHeonNode(Heon heon) {
+        Heon temp = this.SearchId(heon.getId());
+        if (temp instanceof HeonSystemLightDOA) {
+
+            ((HeonSystemLightDOA) temp).setName(((HeonSystemLightDOA)heon).getName());
+
+        }
+    }
+
+
+
     @PostConstruct
     public void PostContruct(){
         System.out.println("Post Contruction");
