@@ -18,6 +18,7 @@ public class HeonSystemLightDOA extends Heon {
     private String Name; //Nom du la pièce ou systeme
     private String IP;
     private int port;
+    private int nombreLumière = 0;
 
     public String getIP() {
         return IP;
@@ -58,6 +59,7 @@ public class HeonSystemLightDOA extends Heon {
 
 
     public void addSystemLight(HeonLightDOA light){
+        light.setNumero(++this.nombreLumière);
         data.add(light);
     }
 
@@ -77,11 +79,13 @@ public class HeonSystemLightDOA extends Heon {
     public void ReplaceME(Heon heon) {
         HeonSystemLightDOA H = (HeonSystemLightDOA)heon;
         this.IP = H.IP;
-        System.out.println(H.IP);
         this.Name = H.Name;
         this.port = H.port;
         this.data = H.data;
-
+        System.out.println("replace SysLight");
+        for (Heon p : this.data){
+            System.out.println(((HeonLightDOA)p).id);
+        }
         this.stopService();
         this.heonSocket = new HeonSocket(IP,port,this.id);
 

@@ -31,13 +31,13 @@ public class HeonSocket {
          maTache = new Runnable() {
             public void run() {
                 if (socket == null || !socket.isConnected()){
-                    System.out.println("Connexion en Cours ......" + IP + " id:"+ID);
+                    //System.out.println("Connexion en Cours ......" + IP + " id:"+ID);
                     try {
                         socket = new Socket();
                         socket.connect(new InetSocketAddress(IP, port),2000);
 
                     } catch (IOException e) {
-                        System.out.println("Erreur connexion ......" + IP+ " id:"+ID);
+                        //System.out.println("Erreur connexion ......" + IP+ " id:"+ID);
                     }
                 }
             }
@@ -74,9 +74,9 @@ public class HeonSocket {
                 bos.write(text.getBytes());
                 bos.flush();
                 //socket.close();
-                System.out.println("Message sent to the server : " + text);
+                //System.out.println("Message sent to the server : " + text);
             } else {
-                System.out.println("Sys Heon non connecté");
+                //System.out.println("Sys Heon non connecté");
             }
         } catch (IOException e) {
             e.printStackTrace();

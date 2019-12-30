@@ -42,7 +42,7 @@ public abstract class Heon implements Cloneable {
         ObjectMapper Obj = new ObjectMapper();
         try {
             String json = Obj.writeValueAsString(this);
-            System.out.println(json);
+            //System.out.println(json);
             return json;
 
         } catch (JsonProcessingException e) {
@@ -88,7 +88,7 @@ public abstract class Heon implements Cloneable {
 
              //data.stream().forEach(Heon -> Heon.SearchId(id));
          } else {
-             System.out.println("TROUVEEEEE:"+h.getId());
+             //System.out.println("TROUVEEEEE:"+h.getId());
          }
 
          return h;

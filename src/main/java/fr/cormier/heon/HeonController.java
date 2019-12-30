@@ -3,10 +3,8 @@ package fr.cormier.heon;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.cormier.heonLight.Heon;
-import fr.cormier.heonLight.HeonPixelDOA;
-import fr.cormier.heonLight.HeonSystemLightDOA;
-import fr.cormier.heonLight.HeonlDataBaseDOA;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import fr.cormier.heonLight.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +22,9 @@ public class HeonController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/heon")
     public String heon(){
-        System.out.println("Get a GET heon");
-        return heonPixelDataBase.GetJSON();
+        String t = heonPixelDataBase.GetJSON();
+        //System.out.println("Get : "+t);
+        return t;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/AddSysheon")
@@ -35,17 +34,22 @@ public class HeonController {
         return heonPixelDataBase.GetJSON();
     }
 
+
+
     @RequestMapping(method = RequestMethod.POST, path = "/Modifheon")
     @ResponseBody
     public void Modifheon(@RequestBody String  o){
         System.out.println("Modification de heon");
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
         try {
             JsonNode sysnode = objectMapper.readTree(o);
             Heon H = objectMapper.treeToValue(sysnode, Heon.class);
-
+            System.out.println("Modif from React: " + o);
             heonPixelDataBase.ReplaceHeonNode(H);
-            System.out.println("Modification de Heon ID: " + H.getClass());
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,10 +59,12 @@ public class HeonController {
 
 
 
+
+
     @RequestMapping(method = RequestMethod.POST, path = "/heon", consumes = "text/plain")
     @ResponseBody
     public String heonPost(@RequestBody String  o )  {
-        System.out.println("Get a POST heon" + o);
+        //System.out.println("Get a POST heon" + o);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -83,6 +89,8 @@ public class HeonController {
     }
 
 
+
+
     @RequestMapping(method = RequestMethod.POST, path = "/Supheon", consumes = "text/plain")
     @ResponseBody
     public String heonSup(@RequestParam String id )  {
@@ -91,5 +99,16 @@ public class HeonController {
         heonPixelDataBase.delSystemLight(sys3);
         return heonPixelDataBase.GetJSON();
     }
+
+@RequestMapping(method = RequestMethod.POST, path = "/HeonAddLight", consumes = "text/plain")
+    @ResponseBody
+    public String heonAddLight(@RequestParam String id )  {
+        System.out.println("Add Light : " + id);
+        HeonSystemLightDOA sys = (HeonSystemLightDOA)heonPixelDataBase.SearchId(id);
+        heonPixelDataBase.addLightOnSysHeon(id);
+        return heonPixelDataBase.GetJSON();
+    }
+
+
 
 }

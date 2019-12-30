@@ -12,11 +12,20 @@ public class HeonLightDOA extends Heon {
 
     @Value("${nb_pixel_by_light}")
     private long PixelByLight;
+    private long numero;
     //private Set<Heon> heonPixelDOASet = new HashSet<>();
 
 
     public HeonLightDOA(){
         super();
+    }
+
+    public long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(long numero) {
+        this.numero = numero;
     }
 
     @Override

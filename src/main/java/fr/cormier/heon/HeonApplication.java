@@ -33,7 +33,7 @@ public class HeonApplication {
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
 
         int i =0;
-        while (i < 10) {
+        while (i <0) {
             light.addPixel(new HeonPixelDOA(0, 0, 255));
             i++;
         }
@@ -41,7 +41,7 @@ public class HeonApplication {
         HeonLightDOA light2 = applicationContext.getBean(HeonLightDOA.class);
     i=0;
 
-        while (i < 10) {
+        while (i < 0) {
             light2.addPixel(new HeonPixelDOA(255, 0, 0));
             i++;
         }
