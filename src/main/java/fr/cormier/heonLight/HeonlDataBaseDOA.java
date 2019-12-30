@@ -27,6 +27,13 @@ public class HeonlDataBaseDOA extends Heon{
         //Rien a faire
     }
 
+    @Override
+    public void AddMe(Heon heon) {
+        HeonSystemLightDOA light = (HeonSystemLightDOA)heon;
+        data.add(light);
+    }
+
+    @Deprecated
     public void addSystemLight(HeonSystemLightDOA light){
         data.add(light);
     }
@@ -40,7 +47,7 @@ public class HeonlDataBaseDOA extends Heon{
     public void addLightOnSysHeon(String id){
         HeonSystemLightDOA H = (HeonSystemLightDOA) this.SearchId(id);
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
-        H.addSystemLight(light);
+        H.AddMe(light);
         //System.out.println(H.data.size());
     }
 

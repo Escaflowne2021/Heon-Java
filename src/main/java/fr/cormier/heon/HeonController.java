@@ -30,7 +30,7 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.GET, path = "/AddSysheon")
     public String AddSysheon(){
         System.out.println("Add a Sys heon");
-        heonPixelDataBase.addSystemLight(new HeonSystemLightDOA("A définir","172.20.10.11",2000));
+        heonPixelDataBase.AddMe(new HeonSystemLightDOA("A définir","172.20.10.11",2000));
         return heonPixelDataBase.GetJSON();
     }
 

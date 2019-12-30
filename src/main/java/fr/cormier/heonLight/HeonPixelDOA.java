@@ -23,6 +23,11 @@ public class HeonPixelDOA extends Heon {
         // a complter
     }
 
+    @Override
+    public void AddMe(Heon heon) {
+        //non concerné
+    }
+
 
     public HeonPixelDOA(int r, int g, int b) {
         this.setR(r);

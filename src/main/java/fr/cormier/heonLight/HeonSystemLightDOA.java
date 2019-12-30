@@ -58,6 +58,7 @@ public class HeonSystemLightDOA extends Heon {
     }
 
 
+    @Deprecated
     public void addSystemLight(HeonLightDOA light){
         light.setNumero(++this.nombreLumière);
         data.add(light);
@@ -90,6 +91,13 @@ public class HeonSystemLightDOA extends Heon {
         this.heonSocket = new HeonSocket(IP,port,this.id);
 
 
+    }
+
+    @Override
+    public void AddMe(Heon heon) {
+        HeonLightDOA light = (HeonLightDOA)heon;
+        light.setNumero(++this.nombreLumière);
+        data.add(light);
     }
 
     //protected Set<Heon> data = new LinkedHashSet<>();

@@ -38,6 +38,8 @@ public abstract class Heon implements Cloneable {
 
     public abstract void ReplaceME(Heon heon);
 
+    public abstract void AddMe(Heon heon);
+
     public String GetJSON() {
         ObjectMapper Obj = new ObjectMapper();
         try {
