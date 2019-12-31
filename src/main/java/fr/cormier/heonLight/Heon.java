@@ -20,7 +20,7 @@ import java.util.Set;
         @JsonSubTypes.Type(value = HeonPixelDOA.class, name = "Pixel"),
         @JsonSubTypes.Type(value = HeonlDataBaseDOA.class, name = "DataBase")
 })
-public abstract class Heon implements Cloneable {
+public abstract class Heon  {
     protected String id;
     protected Set<Heon> data = new LinkedHashSet<>();
 
@@ -64,19 +64,30 @@ public abstract class Heon implements Cloneable {
 
     }
 
-    @Override
-    public Heon clone() {
-        try {
-            return (Heon) super.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
+public void DeleteId(String id){
+        boolean trouve = false;
+       for (Heon h : data){
+           if(h.id.equals(id)) {
+               trouve = true;
+               data.remove(h);
+               break;
+           }
+       }
+       if (!trouve){
+           for (Heon h : data){
+               h.DeleteId(id);
+               }
+           }
+       }
+
+
+
+
 
 
     public Heon SearchId(String id) {
-        System.out.println(this.getClass().getName() + " this.id: "+this.id + " Search id:" + id);
+        //System.out.println(this.getClass().getName() + " this.id: "+this.id + " Search id:" + id);
         if (this.id.equals(id)) {
             return this;
         } else {

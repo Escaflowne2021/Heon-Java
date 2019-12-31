@@ -13,8 +13,6 @@ import java.time.format.TextStyle;
 @PropertySource("classpath:application.properties")
 public class BeanConfiguration {
 
-    @Bean
-    public Test test(){return new Test();}
 
     @Bean
     @Scope("prototype")

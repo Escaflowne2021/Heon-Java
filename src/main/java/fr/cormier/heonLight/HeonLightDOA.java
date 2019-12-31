@@ -41,7 +41,9 @@ public class HeonLightDOA extends Heon {
 
     @Override
     public void AddMe() {
-        // afaire
+        System.out.println("Add Pixel is: "+this.id);
+        this.AddMe( (new HeonPixelDOA(0, 0, 0)));
+
     }
 
 
