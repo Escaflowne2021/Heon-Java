@@ -40,6 +40,8 @@ public abstract class Heon implements Cloneable {
 
     public abstract void AddMe(Heon heon);
 
+    public abstract void AddMe();
+
     public String GetJSON() {
         ObjectMapper Obj = new ObjectMapper();
         try {
@@ -63,9 +65,9 @@ public abstract class Heon implements Cloneable {
     }
 
     @Override
-    public Heon clone()  {
+    public Heon clone() {
         try {
-            return (Heon)super.clone();
+            return (Heon) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -74,27 +76,32 @@ public abstract class Heon implements Cloneable {
 
 
     public Heon SearchId(String id) {
+        System.out.println(this.getClass().getName() + " this.id: "+this.id + " Search id:" + id);
+        if (this.id.equals(id)) {
+            return this;
+        } else {
+            Heon h = data.stream()
+                    .filter(Heon -> Heon.getId().equals(id))
+                    .findFirst()
+                    .orElse(null);
+            if (h == null) {
+                for (Heon heon : data) {
+                    Heon temp = heon.SearchId(id);
+                    if (temp != null) {
 
-         Heon h = data.stream()
-                 .filter(Heon -> Heon.getId().equals(id))
-                 .findFirst()
-                 .orElse(null);
-         if (h == null) {
-             for (Heon heon : data){
-                Heon temp = heon.SearchId(id);
-                if (temp != null) {
-
-                    return temp;
+                        return temp;
+                    }
                 }
-             }
 
-             //data.stream().forEach(Heon -> Heon.SearchId(id));
-         } else {
-             //System.out.println("TROUVEEEEE:"+h.getId());
-         }
+                //data.stream().forEach(Heon -> Heon.SearchId(id));
+            } else {
+                //System.out.println("TROUVEEEEE:"+h.getId());
+            }
+            return h;
+        }
 
-         return h;
-     }
+
+    }
 
     @Override
     public String toString() {

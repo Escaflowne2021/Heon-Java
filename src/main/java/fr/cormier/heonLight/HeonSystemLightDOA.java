@@ -1,8 +1,11 @@
 package fr.cormier.heonLight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import fr.cormier.heon.ApplicationContextProvider;
 import fr.cormier.socket.HeonSocket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,6 +17,9 @@ import java.util.Set;
 @Component
 public class HeonSystemLightDOA extends Heon {
 
+
+    @JsonIgnore
+    ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();;
 
     private String Name; //Nom du la pièce ou systeme
     private String IP;
@@ -41,7 +47,9 @@ public class HeonSystemLightDOA extends Heon {
     private HeonSocket heonSocket;
 
     public HeonSystemLightDOA(){
-       super();
+
+        super();
+        //applicationContext = ApplicationContextProvider.getApplicationContext();
     }
 
 
@@ -83,10 +91,6 @@ public class HeonSystemLightDOA extends Heon {
         this.Name = H.Name;
         this.port = H.port;
         this.data = H.data;
-        System.out.println("replace SysLight");
-        for (Heon p : this.data){
-            System.out.println(((HeonLightDOA)p).id);
-        }
         this.stopService();
         this.heonSocket = new HeonSocket(IP,port,this.id);
 
@@ -98,6 +102,15 @@ public class HeonSystemLightDOA extends Heon {
         HeonLightDOA light = (HeonLightDOA)heon;
         light.setNumero(++this.nombreLumière);
         data.add(light);
+    }
+
+    @Override
+    public void AddMe() {
+        System.out.println("Ajout AddMe "+this.getClass().getName());
+        HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
+        light.setNumero(++this.nombreLumière);
+        data.add(light);
+        //a faire
     }
 
     //protected Set<Heon> data = new LinkedHashSet<>();

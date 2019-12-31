@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 @JsonDeserialize(as = HeonlDataBaseDOA.class)
 public class HeonlDataBaseDOA extends Heon{
@@ -33,6 +34,12 @@ public class HeonlDataBaseDOA extends Heon{
         data.add(light);
     }
 
+    @Override
+    public void AddMe() {
+        data.add((new HeonSystemLightDOA("A définir","172.20.10.11",2000)));
+        //Logger.getLogger(HeonlDataBaseDOA.class.getName()).severe("ERREUR AddME non renseigné");
+    }
+
     @Deprecated
     public void addSystemLight(HeonSystemLightDOA light){
         data.add(light);
@@ -44,6 +51,7 @@ public class HeonlDataBaseDOA extends Heon{
 
     }
 
+    @Deprecated
     public void addLightOnSysHeon(String id){
         HeonSystemLightDOA H = (HeonSystemLightDOA) this.SearchId(id);
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);

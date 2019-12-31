@@ -34,6 +34,27 @@ public class HeonController {
         return heonPixelDataBase.GetJSON();
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/HeonAddLight", consumes = "text/plain")
+    @ResponseBody
+    public String heonAddLight(@RequestParam String id )  {
+        System.out.println("Add Light : " + id);
+        HeonSystemLightDOA sys = (HeonSystemLightDOA)heonPixelDataBase.SearchId(id);
+        heonPixelDataBase.addLightOnSysHeon(id);
+        return heonPixelDataBase.GetJSON();
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/HeonAdd", consumes = "text/plain")
+    @ResponseBody
+    public String heonAdd(@RequestParam String id )  {
+        System.out.println("Add Heon Auto: " + id);
+        Heon sys = heonPixelDataBase.SearchId(id);
+        //heonPixelDataBase.AddMe();
+        sys.AddMe();
+        System.out.println(heonPixelDataBase.GetJSON());
+        return heonPixelDataBase.GetJSON();
+    }
+
+
 
 
     @RequestMapping(method = RequestMethod.POST, path = "/Modifheon")
@@ -60,7 +81,7 @@ public class HeonController {
 
 
 
-
+    //Modification de la lumière
     @RequestMapping(method = RequestMethod.POST, path = "/heon", consumes = "text/plain")
     @ResponseBody
     public String heonPost(@RequestBody String  o )  {
@@ -100,14 +121,9 @@ public class HeonController {
         return heonPixelDataBase.GetJSON();
     }
 
-@RequestMapping(method = RequestMethod.POST, path = "/HeonAddLight", consumes = "text/plain")
-    @ResponseBody
-    public String heonAddLight(@RequestParam String id )  {
-        System.out.println("Add Light : " + id);
-        HeonSystemLightDOA sys = (HeonSystemLightDOA)heonPixelDataBase.SearchId(id);
-        heonPixelDataBase.addLightOnSysHeon(id);
-        return heonPixelDataBase.GetJSON();
-    }
+
+
+
 
 
 

@@ -39,6 +39,11 @@ public class HeonLightDOA extends Heon {
         if (data.size() < PixelByLight) data.add(pixel);
     }
 
+    @Override
+    public void AddMe() {
+        // afaire
+    }
+
 
     @Deprecated
     public void addPixel(HeonPixelDOA pixel){
