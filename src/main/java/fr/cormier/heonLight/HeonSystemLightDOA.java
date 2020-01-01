@@ -10,8 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @JsonDeserialize(as = HeonSystemLightDOA.class)
 @Component
@@ -25,6 +28,8 @@ public class HeonSystemLightDOA extends Heon {
     private String IP;
     private int port;
     private int nombreLumière = 0;
+    private boolean Erreur_connexion = true;
+
 
     public String getIP() {
         return IP;
@@ -42,6 +47,13 @@ public class HeonSystemLightDOA extends Heon {
         this.port = port;
     }
 
+    public boolean isErreur_connexion() {
+        return heonSocket.isErreur_on_socket();
+    }
+
+    public void setErreur_connexion(boolean erreur_connexion) {
+        Erreur_connexion = erreur_connexion;
+    }
 
     @Autowired
     private HeonSocket heonSocket;
@@ -87,12 +99,16 @@ public class HeonSystemLightDOA extends Heon {
     @Override
     public void ReplaceME(Heon heon) {
         HeonSystemLightDOA H = (HeonSystemLightDOA)heon;
-        this.IP = H.IP;
         this.Name = H.Name;
-        this.port = H.port;
         this.data = H.data;
-        this.stopService();
-        this.heonSocket = new HeonSocket(IP,port,this.id);
+
+        if (!(H.IP.equals(this.IP) && H.port == this.port)) {
+            System.out.println("Modification Parametre Socket");
+            this.stopService();
+            this.IP = H.IP;
+            this.port = H.port;
+            this.heonSocket = new HeonSocket(IP,port,this.id);
+        }
 
 
     }
@@ -129,12 +145,14 @@ public class HeonSystemLightDOA extends Heon {
 
         StringBuilder arduinoData = new StringBuilder();
         int count = 0;
-        for (Heon h : data){
+        List<Heon> sorted = data.stream().sorted((h1, h2)->Math.toIntExact(((HeonLightDOA)h1).getNumero() - ((HeonLightDOA)h2).getNumero())).collect(Collectors.toList());
+
+        for (Heon h : sorted){
            count++;
            HeonLightDOA light = (HeonLightDOA)h;
            long nombrePixelManquant = light.getPixelByLight() - light.data.size();
            //System.out.println("Nombre de pixel maanquant" + nombrePixelManquant);
-           for (Heon hp : light.data){
+             for (Heon hp : light.data){
                 HeonPixelDOA pixel = (HeonPixelDOA) hp;
                 arduinoData.append(pixel.toStringLight()).append("#");
                 //System.out.println(pixel.toStringLight());

@@ -85,7 +85,7 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.POST, path = "/heon", consumes = "text/plain")
     @ResponseBody
     public String heonPost(@RequestBody String  o )  {
-        //System.out.println("Get a POST heon" + o);
+        System.out.println("Get a POST heon" + o);
 
         ObjectMapper objectMapper = new ObjectMapper();
 
