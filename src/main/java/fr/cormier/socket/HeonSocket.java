@@ -45,8 +45,8 @@ public class HeonSocket {
 
          maTache = new Runnable() {
             public void run() {
-                try {
-                    if (socket == null || socket.isClosed()|| (erreur_on_socket && inetAddress.isReachable(500))){
+
+                    if (socket == null || socket.isClosed()|| erreur_on_socket){
                         System.out.println("Connexion en Cours ......" + IP + " id:"+ID);
                         try {
                             socket = new Socket();
@@ -54,16 +54,14 @@ public class HeonSocket {
                             erreur_on_socket = false;
 
                         } catch (IOException e) {
-                            e.printStackTrace();
+
                             erreur_on_socket = true;
-                            System.out.println("Erreur connexion ......" + IP+ " id:"+ID);
+                            System.out.println("Erreur connexion ......" + IP+ " id:"+ID+ " - "+e.getMessage());
                         }
                     } else {
                         SendData("NONE");
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
             }
         };
 
@@ -111,6 +109,7 @@ public class HeonSocket {
                 socket.close();
                 erreur_on_socket = true;
             } catch (IOException ex) {
+                erreur_on_socket = true;
                 ex.printStackTrace();
             }
         }

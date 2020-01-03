@@ -106,7 +106,7 @@ public void DeleteId(String id){
 
                 //data.stream().forEach(Heon -> Heon.SearchId(id));
             } else {
-                //System.out.println("TROUVEEEEE:"+h.getId());
+                System.out.println("TROUVEEEEE:"+h.getId());
             }
             return h;
         }

@@ -67,8 +67,9 @@ public class HeonController {
         try {
             JsonNode sysnode = objectMapper.readTree(o);
             Heon H = objectMapper.treeToValue(sysnode, Heon.class);
-            System.out.println("Modif from React: " + o);
+            //System.out.println("Modif from React: " + o);
             heonPixelDataBase.ReplaceHeonNode(H);
+
 
 
 

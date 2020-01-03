@@ -16,6 +16,10 @@ public class BeanConfiguration {
 
     @Bean
     @Scope("prototype")
-    public HeonLightDOA heonLightDOA(){return new HeonLightDOA();};
+    public HeonLightDOA heonLightDOA(){return new HeonLightDOA();}
+
+
+
+
 
 }

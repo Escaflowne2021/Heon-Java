@@ -17,12 +17,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @JsonDeserialize(as = HeonSystemLightDOA.class)
-@Component
 public class HeonSystemLightDOA extends Heon {
 
 
     @JsonIgnore
-    ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();;
+    ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
 
     private String Name; //Nom du la pièce ou systeme
     private String IP;
@@ -77,6 +76,10 @@ public class HeonSystemLightDOA extends Heon {
         this.heonSocket.CloseSocket();
     }
 
+    public void startService(){
+        this.heonSocket = new HeonSocket(IP,port,id);
+    }
+
 
     @Deprecated
     public void addSystemLight(HeonLightDOA light){
@@ -117,6 +120,7 @@ public class HeonSystemLightDOA extends Heon {
     public void AddMe(Heon heon) {
         HeonLightDOA light = (HeonLightDOA)heon;
         light.setNumero(++this.nombreLumière);
+        light.setSys(this.id);
         data.add(light);
     }
 
@@ -125,6 +129,7 @@ public class HeonSystemLightDOA extends Heon {
         System.out.println("Ajout AddMe "+this.getClass().getName());
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
         light.setNumero(++this.nombreLumière);
+        light.setSys(this.id);
         data.add(light);
         //a faire
     }
@@ -161,7 +166,7 @@ public class HeonSystemLightDOA extends Heon {
             }
             for (int i = 0 ; i < nombrePixelManquant ; i++){
                 //System.out.println("Bourrage");
-                arduinoData.append("" + 0 + "," + 0 + ',' + 0+"#");
+                //arduinoData.append("" + 0 + "," + 0 + ',' + 0+"#");
             }
 
         }

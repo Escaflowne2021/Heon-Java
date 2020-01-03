@@ -36,7 +36,12 @@ public class HeonlDataBaseDOA extends Heon{
 
     @Override
     public void AddMe() {
-        data.add((new HeonSystemLightDOA("A définir","172.20.10.11",2000)));
+        HeonSystemLightDOA sys = applicationContext.getBean(HeonSystemLightDOA.class);
+        sys.setName("A definir");
+        sys.setIP("172.20.10.11");
+        sys.setPort(2000);
+        data.add(sys);
+        sys.startService();
         //Logger.getLogger(HeonlDataBaseDOA.class.getName()).severe("ERREUR AddME non renseigné");
     }
 

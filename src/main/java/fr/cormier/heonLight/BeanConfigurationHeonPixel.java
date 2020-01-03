@@ -2,10 +2,7 @@ package fr.cormier.heonLight;
 
 import fr.cormier.socket.BeanConfigurationSocket;
 import fr.cormier.socket.HeonSocket;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.*;
 
 import javax.annotation.PostConstruct;
 
@@ -17,5 +14,10 @@ public class BeanConfigurationHeonPixel {
     @Bean
     public HeonlDataBaseDOA heonlDataBaseDOA() { return new HeonlDataBaseDOA();}
 
+    @Bean
+    @Scope("prototype")
+    public HeonSystemLightDOA heonSystemLightDOA() {return new HeonSystemLightDOA();}
 
-}
+
+
+    }

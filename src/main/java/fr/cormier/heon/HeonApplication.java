@@ -28,9 +28,9 @@ public class HeonApplication {
 
         HeonlDataBaseDOA base = applicationContext.getBean(HeonlDataBaseDOA.class);
 
-
-        HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","172.20.10.11",2000);
-        HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
+        base.AddMe();
+       // HeonSystemLightDOA sys = new HeonSystemLightDOA("maison","172.20.10.11",2000);
+        /*HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
 
         int i =0;
         while (i <0) {
@@ -48,8 +48,8 @@ public class HeonApplication {
         sys.addSystemLight(light);
         sys.addSystemLight(light2);
         sys.RefreshLight();
-
-        base.addSystemLight(sys);
+*/
+        //base.addSystemLight(sys);
         //base.addSystemLight(sys2);
 
 
