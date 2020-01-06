@@ -17,13 +17,17 @@ import java.util.Map;
 @Component
 public class HeonController {
 
+
+
     @Autowired
     private HeonlDataBaseDOA heonPixelDataBase;
+
+
 
     @RequestMapping(method = RequestMethod.GET, path = "/heon")
     public String heon(){
         String t = heonPixelDataBase.GetJSON();
-        //System.out.println("Get : "+t);
+        System.out.println("Get : "+t);
         return t;
     }
 
