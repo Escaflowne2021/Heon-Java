@@ -18,6 +18,9 @@ public class BeanConfigurationHeonPixel {
     @Scope("prototype")
     public HeonSystemLightDOA heonSystemLightDOA() {return new HeonSystemLightDOA();}
 
+    @Bean
+    @Scope("prototype")
+    public HeonLightDOA heonLightDOA() {return new HeonLightDOA();}
 
 
     }

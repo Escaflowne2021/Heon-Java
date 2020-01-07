@@ -20,11 +20,11 @@ public class HeonLightDOA extends Heon {
     private long numero;
 
     @Autowired
-    private HeonlDataBaseDOA heonPixelDataBase;
+    private HeonlDataBaseDOA heonlDataBaseDOA;
 
 
     @JsonIgnore
-    ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
+    private ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
 
 
     private String ID_SYS;
@@ -65,8 +65,9 @@ public class HeonLightDOA extends Heon {
         HeonLightDOA H = (HeonLightDOA)heon;
         System.out.println("Modif Light Sys "+H.ID_SYS);
         this.data = H.data;
-        this.heonPixelDataBase =  applicationContext.getBean(HeonlDataBaseDOA.class);
-        HeonSystemLightDOA sys = ((HeonSystemLightDOA)heonPixelDataBase.SearchId(H.ID_SYS));
+        this.heonlDataBaseDOA =  applicationContext.getBean(HeonlDataBaseDOA.class);
+        //HeonSystemLightDOA sys = ((HeonSystemLightDOA)heonPixelDataBase.SearchId(H.ID_SYS));
+        HeonSystemLightDOA sys = ((HeonSystemLightDOA)heonlDataBaseDOA.SearchId(H.ID_SYS));
         sys.RefreshLight();
 
 

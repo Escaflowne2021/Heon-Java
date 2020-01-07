@@ -1,8 +1,10 @@
 package fr.cormier.heonLight;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import fr.cormier.heon.ApplicationContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +17,7 @@ import java.util.logging.Logger;
 public class HeonlDataBaseDOA extends Heon{
 
     @JsonIgnore
-    ApplicationContext applicationContext;
+    private  ApplicationContext applicationContext;
 
 
     public HeonlDataBaseDOA(){

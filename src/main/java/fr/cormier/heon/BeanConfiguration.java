@@ -5,6 +5,7 @@ import fr.cormier.heonLight.BeanConfigurationHeonPixel;
 import fr.cormier.heonLight.HeonLightDOA;
 import fr.cormier.heonLight.HeonlDataBaseDOA;
 import org.springframework.context.annotation.*;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.time.format.TextStyle;
 
@@ -16,9 +17,6 @@ import java.time.format.TextStyle;
 public class BeanConfiguration {
 
 
-    @Bean
-    @Scope("prototype")
-    public HeonLightDOA heonLightDOA(){return new HeonLightDOA();}
 
 
 
