@@ -63,7 +63,7 @@ public class HeonController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/Modifheon")
     @ResponseBody
-    public void Modifheon(@RequestBody String  o){
+    public String Modifheon(@RequestBody String  o){
         System.out.println("Modification de heon");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
@@ -80,6 +80,7 @@ public class HeonController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return heonPixelDataBase.GetJSON();
 
     }
 
