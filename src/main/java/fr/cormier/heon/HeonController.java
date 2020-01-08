@@ -64,7 +64,7 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.POST, path = "/Modifheon")
     @ResponseBody
     public String Modifheon(@RequestBody String  o){
-        System.out.println("Modification de heon");
+        System.out.println("Modification de heon avec return");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
