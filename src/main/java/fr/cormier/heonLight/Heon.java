@@ -72,7 +72,8 @@ public void DeleteId(String id){
        for (Heon h : data){
            if(h.id.equals(id)) {
                trouve = true;
-               data.remove(h);
+               RemoveMe(h);
+               //data.remove(h);
                break;
            }
        }
