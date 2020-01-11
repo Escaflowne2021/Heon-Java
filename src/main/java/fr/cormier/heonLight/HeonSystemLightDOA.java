@@ -134,6 +134,11 @@ public class HeonSystemLightDOA extends Heon {
         //a faire
     }
 
+    @Override
+    public void RemoveMe(Heon h) {
+        data.remove(h);
+    }
+
     //protected Set<Heon> data = new LinkedHashSet<>();
     public Set<Heon> getData(){
         return this.data;

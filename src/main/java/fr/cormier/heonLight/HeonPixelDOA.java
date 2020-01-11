@@ -33,6 +33,11 @@ public class HeonPixelDOA extends Heon {
         //a faire
     }
 
+    @Override
+    public void RemoveMe(Heon h) {
+        //Ne sers pas
+    }
+
 
     public HeonPixelDOA(int r, int g, int b) {
         this.setR(r);

@@ -48,6 +48,12 @@ public class HeonlDataBaseDOA extends Heon{
         //Logger.getLogger(HeonlDataBaseDOA.class.getName()).severe("ERREUR AddME non renseigné");
     }
 
+    @Override
+    public void RemoveMe(Heon h) {
+        delSystemLight((HeonSystemLightDOA)h);
+
+    }
+
     @Deprecated
     public void addSystemLight(HeonSystemLightDOA light){
         data.add(light);

@@ -88,6 +88,11 @@ public class HeonLightDOA extends Heon {
 
     }
 
+    @Override
+    public void RemoveMe(Heon h) {
+        data.remove(h);
+    }
+
 
     @Deprecated
     public void addPixel(HeonPixelDOA pixel){

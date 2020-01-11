@@ -42,6 +42,8 @@ public abstract class Heon  {
 
     public abstract void AddMe();
 
+    public abstract void RemoveMe(Heon h);
+
     public String GetJSON() {
         ObjectMapper Obj = new ObjectMapper();
         try {
