@@ -89,6 +89,15 @@ public class HeonLightDOA extends Heon {
     }
 
     @Override
+    public void AddMe(int nb) {
+        int i =0;
+        while ( i < nb){
+            i++;
+            AddMe();
+        }
+    }
+
+    @Override
     public void RemoveMe(Heon h) {
         data.remove(h);
     }

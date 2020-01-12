@@ -34,6 +34,11 @@ public class HeonPixelDOA extends Heon {
     }
 
     @Override
+    public void AddMe(int nb) {
+        // non concerne
+    }
+
+    @Override
     public void RemoveMe(Heon h) {
         //Ne sers pas
     }

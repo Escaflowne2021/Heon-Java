@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.NON_PRIVATE)
 @JsonTypeInfo(
@@ -41,8 +38,17 @@ public abstract class Heon  {
     public abstract void AddMe(Heon heon);
 
     public abstract void AddMe();
+    public abstract void AddMe(int nb);
 
     public abstract void RemoveMe(Heon h);
+    public void RemoveChildFromData(int nb){
+        int i = 0;
+        while (i < nb && data.size()!=0){
+            i++;
+            //data.remove( ((TreeSet) data).last() );
+            System.out.println(data.remove(data.toArray()[ data.size()-1 ]));
+        }
+    }
 
     public String GetJSON() {
         ObjectMapper Obj = new ObjectMapper();

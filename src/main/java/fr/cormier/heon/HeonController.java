@@ -49,11 +49,13 @@ public class HeonController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/HeonAdd", consumes = "text/plain")
     @ResponseBody
-    public String heonAdd(@RequestParam String id )  {
+    public String heonAdd(@RequestParam String id,
+                          @RequestParam(required = false) int nb)  {
         System.out.println("Add Heon Auto: " + id);
         Heon sys = heonPixelDataBase.SearchId(id);
         //heonPixelDataBase.AddMe();
-        sys.AddMe();
+        System.out.println("nb:"+nb);
+        sys.AddMe(nb);
         System.out.println(heonPixelDataBase.GetJSON());
         return heonPixelDataBase.GetJSON();
     }
@@ -118,10 +120,16 @@ public class HeonController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/Supheon", consumes = "text/plain")
     @ResponseBody
-    public String heonSup(@RequestParam String id )  {
-        System.out.println("SUP heon : " + id);
+    public String heonSup(@RequestParam String id,
+                          @RequestParam(required = false) int nb)  {
+        System.out.println("SUP heon : " + id + "nb "+nb);
         //HeonSystemLightDOA sys3 = (HeonSystemLightDOA)heonPixelDataBase.SearchId(id);
-        heonPixelDataBase.DeleteId(id);
+        if (nb == 0 ){
+            heonPixelDataBase.DeleteId(id);
+        }else {
+            heonPixelDataBase.SearchId(id).RemoveChildFromData(nb);
+        }
+
         return heonPixelDataBase.GetJSON();
     }
 
