@@ -15,7 +15,9 @@ import java.util.*;
         @JsonSubTypes.Type(value = HeonLightDOA.class, name = "Light"),
         @JsonSubTypes.Type(value = HeonSystemLightDOA.class, name = "Syst"),
         @JsonSubTypes.Type(value = HeonPixelDOA.class, name = "Pixel"),
-        @JsonSubTypes.Type(value = HeonlDataBaseDOA.class, name = "DataBase")
+        @JsonSubTypes.Type(value = HeonlDataBaseDOA.class, name = "DataBase"),
+        @JsonSubTypes.Type(value = HeonVirtualLight.class, name = "VirtualLight")
+
 })
 public abstract class Heon  {
     protected String id;
@@ -35,10 +37,10 @@ public abstract class Heon  {
 
     public abstract void ReplaceME(Heon heon);
 
-    public abstract void AddMe(Heon heon);
+    public abstract void AddMe(Heon heon, boolean virtual);
 
     public abstract void AddMe();
-    public abstract void AddMe(int nb);
+    public abstract void AddMe(int nb, boolean virtual);
 
     public abstract void RemoveMe(Heon h);
     public void RemoveChildFromData(int nb){

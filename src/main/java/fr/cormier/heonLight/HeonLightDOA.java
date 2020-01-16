@@ -76,7 +76,7 @@ public class HeonLightDOA extends Heon {
 
 
     @Override
-    public void AddMe(Heon heon) {
+    public void AddMe(Heon heon, boolean virtual) {
         HeonPixelDOA pixel = (HeonPixelDOA) heon;
         if (data.size() < PixelByLight) data.add(pixel);
     }
@@ -84,12 +84,12 @@ public class HeonLightDOA extends Heon {
     @Override
     public void AddMe() {
         System.out.println("Add Pixel is: "+this.id);
-        this.AddMe( (new HeonPixelDOA(0, 0, 0)));
+        this.AddMe( (new HeonPixelDOA(0, 0, 0)),false);
 
     }
 
     @Override
-    public void AddMe(int nb) {
+    public void AddMe(int nb, boolean virtual) {
         int i =0;
         while ( i < nb){
             i++;

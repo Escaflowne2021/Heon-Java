@@ -16,6 +16,9 @@ import java.util.logging.Logger;
 @JsonDeserialize(as = HeonlDataBaseDOA.class)
 public class HeonlDataBaseDOA extends Heon{
 
+
+    //protected Set<Heon> dataVirtualLight = new LinkedHashSet<>();
+
     @JsonIgnore
     private  ApplicationContext applicationContext;
 
@@ -26,13 +29,22 @@ public class HeonlDataBaseDOA extends Heon{
 
     }
 
+    public void AddMeVirtualSys(){
+        //HeonVirtualLight VLight = applicationContext.getBean(HeonVirtualLight.class);
+        //data.add(VLight);
+    }
+
+    public void RemoveMeVirtualLight(Heon h){
+        data.remove(h);
+    }
+
     @Override
     public void ReplaceME(Heon heon) {
         //Rien a faire
     }
 
     @Override
-    public void AddMe(Heon heon) {
+    public void AddMe(Heon heon, boolean virtual) {
         HeonSystemLightDOA light = (HeonSystemLightDOA)heon;
         data.add(light);
     }
@@ -49,11 +61,16 @@ public class HeonlDataBaseDOA extends Heon{
     }
 
     @Override
-    public void AddMe(int nb) {
+    public void AddMe(int nb, boolean virtual) {
         int i =0;
         while ( i < nb){
             i++;
-            AddMe();
+            if (virtual) {
+                AddMeVirtualSys();
+            } else {
+                AddMe();
+            }
+
         }
     }
 
@@ -78,7 +95,7 @@ public class HeonlDataBaseDOA extends Heon{
     public void addLightOnSysHeon(String id){
         HeonSystemLightDOA H = (HeonSystemLightDOA) this.SearchId(id);
         HeonLightDOA light = applicationContext.getBean(HeonLightDOA.class);
-        H.AddMe(light);
+        H.AddMe(light,false);
         //System.out.println(H.data.size());
     }
 

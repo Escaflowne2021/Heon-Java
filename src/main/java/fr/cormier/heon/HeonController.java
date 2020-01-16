@@ -34,7 +34,7 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.GET, path = "/AddSysheon")
     public String AddSysheon(){
         System.out.println("Add a Sys heon");
-        heonPixelDataBase.AddMe(new HeonSystemLightDOA("A définir","172.20.10.11",2000));
+        //heonPixelDataBase.AddMe(new HeonSystemLightDOA("A définir","172.20.10.11",2000));
         return heonPixelDataBase.GetJSON();
     }
 
@@ -50,13 +50,17 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.POST, path = "/HeonAdd", consumes = "text/plain")
     @ResponseBody
     public String heonAdd(@RequestParam String id,
-                          @RequestParam(required = false) int nb)  {
-        System.out.println("Add Heon Auto: " + id);
-        Heon sys = heonPixelDataBase.SearchId(id);
-        //heonPixelDataBase.AddMe();
-        System.out.println("nb:"+nb);
-        sys.AddMe(nb);
-        System.out.println(heonPixelDataBase.GetJSON());
+                          @RequestParam(required = false) int nb,
+                          @RequestParam(required = false) boolean virtual)  {
+
+            System.out.println("Add Heon Auto: " + id);
+            Heon sys = heonPixelDataBase.SearchId(id);
+            //heonPixelDataBase.AddMe();
+            System.out.println("nb:"+nb);
+            sys.AddMe(nb,virtual);
+            System.out.println(heonPixelDataBase.GetJSON());
+
+
         return heonPixelDataBase.GetJSON();
     }
 

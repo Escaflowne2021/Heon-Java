@@ -24,8 +24,8 @@ public class HeonPixelDOA extends Heon {
     }
 
     @Override
-    public void AddMe(Heon heon) {
-        //non concerné
+    public void AddMe(Heon heon, boolean virtual) {
+
     }
 
     @Override
@@ -34,9 +34,11 @@ public class HeonPixelDOA extends Heon {
     }
 
     @Override
-    public void AddMe(int nb) {
-        // non concerne
+    public void AddMe(int nb, boolean virtual) {
+
     }
+
+
 
     @Override
     public void RemoveMe(Heon h) {

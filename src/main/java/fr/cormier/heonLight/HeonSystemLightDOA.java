@@ -117,7 +117,7 @@ public class HeonSystemLightDOA extends Heon {
     }
 
     @Override
-    public void AddMe(Heon heon) {
+    public void AddMe(Heon heon, boolean virtual) {
         HeonLightDOA light = (HeonLightDOA)heon;
         light.setNumero(++this.nombreLumière);
         light.setSys(this.id);
@@ -135,12 +135,23 @@ public class HeonSystemLightDOA extends Heon {
     }
 
     @Override
-    public void AddMe(int nb) {
+    public void AddMe(int nb, boolean virtual) {
         int i =0;
         while ( i < nb){
             i++;
-            AddMe();
+            if (virtual) {
+                AddMeVirtualLight();
+            } else {
+                AddMe();
+            }
+
         }
+    }
+
+    public void AddMeVirtualLight(){
+        System.out.println("Ajout Light Virtual");
+        HeonVirtualLight VLight = applicationContext.getBean(HeonVirtualLight.class);
+        data.add(VLight);
     }
 
     @Override
