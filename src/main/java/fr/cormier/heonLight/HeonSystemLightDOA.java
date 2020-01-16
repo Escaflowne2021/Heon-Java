@@ -1,6 +1,8 @@
 package fr.cormier.heonLight;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import fr.cormier.heon.ApplicationContextProvider;
 import fr.cormier.socket.HeonSocket;
@@ -10,10 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @JsonDeserialize(as = HeonSystemLightDOA.class)
@@ -28,6 +27,9 @@ public class HeonSystemLightDOA extends Heon {
     private int port;
     private int nombreLumière = 0;
     private boolean Erreur_connexion = true;
+
+    protected Set<Graph> DataGraph = new LinkedHashSet<>();
+
 
 
     public String getIP() {
@@ -104,6 +106,7 @@ public class HeonSystemLightDOA extends Heon {
         HeonSystemLightDOA H = (HeonSystemLightDOA)heon;
         this.Name = H.Name;
         this.data = H.data;
+        this.DataGraph = H.DataGraph;
 
         if (!(H.IP.equals(this.IP) && H.port == this.port)) {
             System.out.println("Modification Parametre Socket");
@@ -203,8 +206,23 @@ public class HeonSystemLightDOA extends Heon {
 
     }
 
+}
 
-
-
+@JsonDeserialize(as = Coord.class)
+class Coord {
+    public int x;
+    public int y;
 
 }
+
+
+
+@JsonDeserialize(as = Graph.class)
+ class Graph {
+    public int num;
+    public boolean isSelected;
+    public String id;
+    public Coord coord;
+
+}
+

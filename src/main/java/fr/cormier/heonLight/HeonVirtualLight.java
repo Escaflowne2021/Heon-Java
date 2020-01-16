@@ -9,7 +9,7 @@ import java.util.Set;
 public class HeonVirtualLight extends Heon {
 
 
-    protected Set<String> data = new LinkedHashSet<>();
+    protected Set<LinkVirtualLight> data = new LinkedHashSet<>();
 
     @Override
     public void ReplaceME(Heon heon) {
@@ -18,7 +18,7 @@ public class HeonVirtualLight extends Heon {
 
     @Override
     public void AddMe(Heon heon,boolean virtual) {
-        this.data.add(heon.id);
+        //this.data.add(heon.id);
 
     }
 
@@ -37,3 +37,13 @@ public class HeonVirtualLight extends Heon {
         this.data.removeIf(value -> value.equals(h.id));
     }
 }
+
+
+@JsonDeserialize(as = LinkVirtualLight.class)
+class LinkVirtualLight {
+
+    public String id[];
+    public String name;
+
+}
+

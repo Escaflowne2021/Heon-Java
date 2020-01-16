@@ -1,6 +1,7 @@
 package fr.cormier.heon;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -70,14 +71,16 @@ public class HeonController {
     @RequestMapping(method = RequestMethod.POST, path = "/Modifheon")
     @ResponseBody
     public String Modifheon(@RequestBody String  o){
-        System.out.println("Modification de heon avec return");
+        System.out.println("Modification de heon "+o);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(SerializationFeature.ORDER_MAP_ENTRIES_BY_KEYS, true);
         objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+
         try {
             JsonNode sysnode = objectMapper.readTree(o);
             Heon H = objectMapper.treeToValue(sysnode, Heon.class);
             //System.out.println("Modif from React: " + o);
+
             heonPixelDataBase.ReplaceHeonNode(H);
 
 

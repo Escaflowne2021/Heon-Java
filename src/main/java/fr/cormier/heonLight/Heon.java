@@ -16,7 +16,9 @@ import java.util.*;
         @JsonSubTypes.Type(value = HeonSystemLightDOA.class, name = "Syst"),
         @JsonSubTypes.Type(value = HeonPixelDOA.class, name = "Pixel"),
         @JsonSubTypes.Type(value = HeonlDataBaseDOA.class, name = "DataBase"),
-        @JsonSubTypes.Type(value = HeonVirtualLight.class, name = "VirtualLight")
+        @JsonSubTypes.Type(value = HeonVirtualLight.class, name = "VirtualLight"),
+        //@JsonSubTypes.Type(value = Coord.class, name = "Coord"),
+        //@JsonSubTypes.Type(value = Graph.class, name = "Graph")
 
 })
 public abstract class Heon  {
