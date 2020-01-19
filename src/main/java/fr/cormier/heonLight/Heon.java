@@ -17,8 +17,7 @@ import java.util.*;
         @JsonSubTypes.Type(value = HeonPixelDOA.class, name = "Pixel"),
         @JsonSubTypes.Type(value = HeonlDataBaseDOA.class, name = "DataBase"),
         @JsonSubTypes.Type(value = HeonVirtualLight.class, name = "VirtualLight"),
-        //@JsonSubTypes.Type(value = Coord.class, name = "Coord"),
-        //@JsonSubTypes.Type(value = Graph.class, name = "Graph")
+
 
 })
 public abstract class Heon  {
@@ -28,22 +27,16 @@ public abstract class Heon  {
     public Heon() {
         id = this.generateId();
     }
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public abstract void ReplaceME(Heon heon);
-
     public abstract void AddMe(Heon heon, boolean virtual);
-
     public abstract void AddMe();
     public abstract void AddMe(int nb, boolean virtual);
-
     public abstract void RemoveMe(Heon h);
     public void RemoveChildFromData(int nb){
         int i = 0;
@@ -52,6 +45,13 @@ public abstract class Heon  {
             //data.remove( ((TreeSet) data).last() );
             System.out.println(data.remove(data.toArray()[ data.size()-1 ]));
         }
+    }
+
+
+    public void SetAllLight(int r, int g, int b) {
+        data.stream().forEach(heon -> {
+            heon.SetAllLight(r,g,b);
+        });
     }
 
     public String GetJSON() {
@@ -66,8 +66,6 @@ public abstract class Heon  {
         }
         return null;
     }
-
-
     protected String generateId() {
         Random random = new Random();
         int val = random.nextInt();

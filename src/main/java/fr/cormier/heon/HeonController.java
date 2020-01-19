@@ -93,6 +93,19 @@ public class HeonController {
 
     }
 
+    @RequestMapping(method = RequestMethod.POST, path = "/SetLightheon")
+    @ResponseBody
+    public String SetLightheon(@RequestParam String id,
+                               @RequestParam int r,
+                               @RequestParam int g,
+                               @RequestParam int b){
+        System.out.println("SET LIGHT de heon "+id+"/"+r+"/"+g+"/"+b);
+            Heon heon = heonPixelDataBase.SearchId(id);
+            heon.SetAllLight(r,g,b);
+        return heonPixelDataBase.GetJSON();
+
+    }
+
 
 
 

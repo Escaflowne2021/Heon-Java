@@ -162,6 +162,8 @@ public class HeonSystemLightDOA extends Heon {
         data.remove(h);
     }
 
+
+
     //protected Set<Heon> data = new LinkedHashSet<>();
     public Set<Heon> getData(){
         return this.data;
@@ -178,7 +180,7 @@ public class HeonSystemLightDOA extends Heon {
 
         StringBuilder arduinoData = new StringBuilder();
         int count = 0;
-        List<Heon> sorted = data.stream().sorted((h1, h2)->Math.toIntExact(((HeonLightDOA)h1).getNumero() - ((HeonLightDOA)h2).getNumero())).collect(Collectors.toList());
+        List<Heon> sorted = data.stream().filter(light -> light instanceof HeonLightDOA).sorted((h1, h2)->Math.toIntExact(((HeonLightDOA)h1).getNumero() - ((HeonLightDOA)h2).getNumero())).collect(Collectors.toList());
 
         for (Heon h : sorted){
            count++;

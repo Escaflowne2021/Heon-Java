@@ -6,10 +6,6 @@ import fr.cormier.heon.ApplicationContextProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
 
 
 @JsonDeserialize(as = HeonLightDOA.class)
@@ -18,6 +14,8 @@ public class HeonLightDOA extends Heon {
     @Value("${nb_pixel_by_light}")
     private long PixelByLight;
     private long numero;
+    private String name;
+    private boolean visible = true;
 
     @Autowired
     private HeonlDataBaseDOA heonlDataBaseDOA;
@@ -40,6 +38,13 @@ public class HeonLightDOA extends Heon {
         this.ID_SYS = ID_SYS;
     }
 
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 
     public long getNumero() {
         return numero;
@@ -49,7 +54,13 @@ public class HeonLightDOA extends Heon {
         this.numero = numero;
     }
 
+    public String getName() {
+        return "Lumiere "+ numero;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getSys() {
         return ID_SYS;
@@ -67,7 +78,6 @@ public class HeonLightDOA extends Heon {
         System.out.println("Modif Light Sys "+H.ID_SYS);
         this.data = H.data;
         this.heonlDataBaseDOA =  applicationContext.getBean(HeonlDataBaseDOA.class);
-        //HeonSystemLightDOA sys = ((HeonSystemLightDOA)heonPixelDataBase.SearchId(H.ID_SYS));
         HeonSystemLightDOA sys = ((HeonSystemLightDOA)heonlDataBaseDOA.SearchId(H.ID_SYS));
         sys.RefreshLight();
 
@@ -84,7 +94,7 @@ public class HeonLightDOA extends Heon {
     @Override
     public void AddMe() {
         System.out.println("Add Pixel is: "+this.id);
-        this.AddMe( (new HeonPixelDOA(0, 0, 0)),false);
+        this.AddMe( (new HeonPixelDOA(0, 0, 0,ID_SYS)),false);
 
     }
 

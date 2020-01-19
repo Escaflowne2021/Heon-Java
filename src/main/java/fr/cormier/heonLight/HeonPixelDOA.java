@@ -1,8 +1,12 @@
 package fr.cormier.heonLight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import fr.cormier.heon.ApplicationContextProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 @JsonDeserialize(as = HeonPixelDOA.class)
 public class HeonPixelDOA extends Heon {
@@ -10,6 +14,25 @@ public class HeonPixelDOA extends Heon {
     private int R;
     private int G;
     private int B;
+
+
+    protected String ID_SYS;
+
+    public String getID_SYS() {
+        return ID_SYS;
+    }
+
+    public void setID_SYS(String ID_SYS) {
+        this.ID_SYS = ID_SYS;
+    }
+
+    @Autowired
+    private HeonlDataBaseDOA heonlDataBaseDOA;
+
+
+    @JsonIgnore
+    private ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
+
 
     public HeonPixelDOA() {
         super();
@@ -45,11 +68,25 @@ public class HeonPixelDOA extends Heon {
         //Ne sers pas
     }
 
+    @Override
+    public void SetAllLight(int r, int g, int b) {
+        setRGB(r,g,b);
+        RefreshSys();
+    }
 
-    public HeonPixelDOA(int r, int g, int b) {
+    public void RefreshSys(){
+        System.out.println(ID_SYS);
+        applicationContext = ApplicationContextProvider.getApplicationContext();
+        heonlDataBaseDOA =  applicationContext.getBean(HeonlDataBaseDOA.class);
+       ( (HeonSystemLightDOA)(heonlDataBaseDOA.SearchId(ID_SYS))).RefreshLight();
+    }
+
+
+    public HeonPixelDOA(int r, int g, int b, String ID_SYS) {
         this.setR(r);
         this.setG(g);
         this.setB(b);
+        this.ID_SYS = ID_SYS;
     }
 
     public int getR() {
