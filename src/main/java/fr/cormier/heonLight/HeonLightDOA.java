@@ -77,6 +77,7 @@ public class HeonLightDOA extends Heon {
         HeonLightDOA H = (HeonLightDOA)heon;
         System.out.println("Modif Light Sys "+H.ID_SYS);
         this.data = H.data;
+        this.visible = H.visible;
         this.heonlDataBaseDOA =  applicationContext.getBean(HeonlDataBaseDOA.class);
         HeonSystemLightDOA sys = ((HeonSystemLightDOA)heonlDataBaseDOA.SearchId(H.ID_SYS));
         sys.RefreshLight();

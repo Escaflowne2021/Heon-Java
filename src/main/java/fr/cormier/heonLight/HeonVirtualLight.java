@@ -23,15 +23,24 @@ public class HeonVirtualLight extends Heon {
     @JsonIgnore
     protected Set<Heon> data = new LinkedHashSet<>();
 
-    protected  Set<LinkVirtualLight> dataV = new LinkedHashSet<>();
+    protected Set<LinkVirtualLight> dataV = new LinkedHashSet<>();
     protected String name = "????";
+    protected boolean visible = true;
 
-    public  Set<LinkVirtualLight> getDataV() {
+    public Set<LinkVirtualLight> getDataV() {
         return this.dataV;
     }
 
-    public  void setDataV(Set<LinkVirtualLight> dataV) {
+    public void setDataV(Set<LinkVirtualLight> dataV) {
         this.dataV = dataV;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public String getName() {
@@ -44,21 +53,22 @@ public class HeonVirtualLight extends Heon {
 
     @Override
     public void SetAllLight(int r, int g, int b) {
-        heonlDataBaseDOA =  applicationContext.getBean(HeonlDataBaseDOA.class);
+        heonlDataBaseDOA = applicationContext.getBean(HeonlDataBaseDOA.class);
 
         dataV.stream().forEach(virtualLight -> {
-            (heonlDataBaseDOA.SearchId(virtualLight.id_light)).SetAllLight(r,g,b);
+            (heonlDataBaseDOA.SearchId(virtualLight.id_light)).SetAllLight(r, g, b);
         });
     }
 
     @Override
     public void ReplaceME(Heon heon) {
-        HeonVirtualLight t = (HeonVirtualLight)heon;
+        HeonVirtualLight t = (HeonVirtualLight) heon;
         this.dataV = t.dataV;
+        this.name = t.name;
     }
 
     @Override
-    public void AddMe(Heon heon,boolean virtual) {
+    public void AddMe(Heon heon, boolean virtual) {
         //this.data.add(heon.id);
 
     }
